@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import django_heroku
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -26,7 +27,7 @@ SECRET_KEY = '&v!lxr!sp06!am5*#p*x%*#3w+zm-c(&rovh$-_tu2wfy^x03@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 CORS_ORIGIN_ALLOW_ALL=True
 
 
@@ -113,16 +114,28 @@ WSGI_APPLICATION = 'back.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-DATABASES = {
+"""DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'csback',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'django',
         'USER': 'angel',
         'PASSWORD': 'angel',
         'HOST': 'localhost',
         'PORT': '3306',
     }
+}"""
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd75ja1d5iri5uq',
+        'USER': 'kcdsvzbdjiyvig',
+        'PASSWORD': '0fd0c3014f50f72ec0c01620e373f39c53f63189ef2d6d0503e5000e40f7bbe5',
+        'HOST': 'ec2-54-204-2-25.compute-1.amazonaws.com',
+        'PORT': '5432',
+    }
 }
+
 
 
 # Password validation
@@ -163,7 +176,4 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
-
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
+django_heroku.settings(locals())
